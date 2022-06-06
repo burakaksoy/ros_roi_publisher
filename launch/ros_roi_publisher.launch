@@ -1,0 +1,9 @@
+<launch>
+	<arg name="pkg_name" default="ros_roi_publisher"/>
+	<arg name="node_name" default="roi_publisher"/>		
+	
+    <node name="$(arg node_name)" pkg="$(arg pkg_name)" type="$(arg node_name).py" output="screen">
+		<rosparam file="$(find ros_roi_publisher)/config/roi_publisher.yaml"/>
+    </node>
+    
+</launch>

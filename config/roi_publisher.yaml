@@ -1,0 +1,8 @@
+input_rgb_image_topic_name: 'ir/image_raw'
+# input_rgb_image_topic_name: 'ir/image_rect_ir'
+
+output_roi_topic_name: 'roi'
+
+show_text: true
+show_boxes: true
+feature_size: false
