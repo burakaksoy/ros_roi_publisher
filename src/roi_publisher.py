@@ -26,7 +26,6 @@ class ROS2OpenCV2_ROI(object):
         self.input_rgb_image_topic_name = rospy.get_param("~input_rgb_image_topic_name")
         self.output_roi_topic_name = rospy.get_param("~output_roi_topic_name", 'roi')
 
-
         self.show_text = rospy.get_param("~show_text", True)
         self.show_boxes = rospy.get_param("~show_boxes", True)
         self.feature_size = rospy.get_param("~feature_size", False)
@@ -49,32 +48,20 @@ class ROS2OpenCV2_ROI(object):
         self.drag_start = None
         self.keystroke = None
         self.detect_box = None
-        self.display_box = None
         self.keep_marker_history = False
         self.night_mode = False
-        self.auto_face_tracking = False
         self.cps = 0 # Cycles per second = number of processing loops per second.
         self.cps_values = list()
         self.cps_n_values = 20
-        self.busy = False
         self.resize_window_width = 0
         self.resize_window_height = 0
-        self.face_tracking = False
         
         # Create the main display window
         self.cv_window_name = self.node_name
-        #cv2.namedWindow(self.cv_window_name, cv2.WINDOW_NORMAL)
-        #if self.resize_window_height > 0 and self.resize_window_width > 0:
-        #    cv2.resizeWindow(self.cv_window_name, self.resize_window_width, self.resize_window_height)
-        #else:
-        #    cv2.resizeWindow(self.cv_window_name, 640, 480)
         
         # Create the cv_bridge object
         self.bridge = CvBridge()
-        
-        # Set a call back on mouse clicks on the image window
-        #cv2.setMouseCallback (self.node_name, self.on_mouse_click, None)
-        
+
         # Subscribe to the image topics and set the appropriate callbacks
         # The image topic names can be remapped in the appropriate launch file
         self.image_sub = rospy.Subscriber(self.input_rgb_image_topic_name, Image, self.image_callback)
